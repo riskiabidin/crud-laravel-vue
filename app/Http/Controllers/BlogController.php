@@ -109,4 +109,20 @@ class BlogController extends Controller
             }
         }
     }
+    public function destroy($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+        if($blog){
+            return response()->json([
+                'success'=>true,
+                'message'=>'blog berhasil dihapus',
+            ],200);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'blog gagal dihapus',
+            ],500);
+        }
+    }
 }
